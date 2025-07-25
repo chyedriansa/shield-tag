@@ -13,6 +13,10 @@ export const register = async (req: Request, res: Response) => {
   if (!email || !password) {
     return res.status(400).json({ message: 'Email and password are required' });
   }
+   const nameRegex = /^[a-zA-Z\s]+$/; 
+  if (!nameRegex.test(name)) {
+    return res.status(400).json({ message: 'Name can only contain letters and spaces.' });
+  }
 
   try {
     //Check User if already Exists
